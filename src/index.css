@@ -1,13 +1,204 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0px;
+    font-family: "Poppins", sans-serif;
+    --background: linear-gradient(
+        to bottom right,
+        rgb(31, 155, 97),
+        rgb(68, 130, 231)
+    );
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+    background-color: rgba(25, 25, 25, 1);
+    height: 100%;
+    box-sizing: border-box;
+    color: white;
+    padding: 15px;
+}
+
+.app {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 15px;
+    /* width: 100vw; */
+    height: calc(100vh - 30px);
+}
+
+.header {
+    grid-column: 1 / 4;
+    background-image: var(--background);
+    background-attachment: fixed;
+    height: 4em;
+    padding: 15px 11px;
+    /* background: rgba(255,255,255,0.3); */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    border: 4px white solid;
+}
+
+.header--logo {
+    height: 100%;
+}
+
+.header--text {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.account {
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    background-image: var(--background);
+    background-attachment: fixed;
+    /* margin-top: 15px; */
+    padding: 15px;
+    border-radius: 15px;
+    justify-content: space-between;
+    height: 8em;
+}
+
+.account--title,
+.drive--title {
+    font-size: 24px;
+    font-weight: 500;
+    align-self: flex-start;
+    /* position: sticky;
+    top: 0px; */
+}
+
+.account--email {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px white solid;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.account--button,
+.drive--button {
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 15px;
+    border: transparent;
+}
+
+.account--login {
+    position: relative;
+    top: -25px;
+}
+
+.account--button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.account--button:active {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.excel {
+    background-image: var(--background);
+    background-attachment: fixed;
+    /* margin-top: 15px; */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    grid-row: 2 / 4;
+}
+
+.drive {
+    background-image: var(--background);
+    background-attachment: fixed;
+    /* margin-top: 15px; */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    order: 2;
+}
+
+.drive--files {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px white solid;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+table {
+    border-collapse: collapse;
+    border-style: hidden;
+    width: 100%;
+    text-align: left;
+}
+
+th,
+td {
+    border: 1px solid white;
+    font-size: 12px;
+    padding: 8px;
+}
+
+th {
+    font-size: 18px;
+}
+
+.drive--button {
+    /* padding-top: ; */
+    align-self: flex-end;
+}
+
+@media only screen and (max-width: 500px) {
+    .app {
+        display: flex;
+        flex-direction: column;
+        column-gap: 15px;
+        z-index: 1;
+        /* height: 100vh; */
+    }
+
+    .header {
+        justify-content: space-between;
+        position: sticky;
+        top: 15px;
+        transform-style: preserve-3d;
+        height: 7.5%;
+    }
+
+    .header--text {
+        position: relative;
+        right: 10px;
+        font-size: 30px;
+    }
+
+    .header::before {
+        overflow: hidden;
+        content: "";
+        height: 50px;
+        position: absolute;
+        top: -25px;
+        left: -5px;
+        right: -5px;
+        /* z-index: -1; */
+        transform: translateZ(-1px);
+        background-color: rgba(25,25,25,1);
+    }
+
+    .account--button:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .account--button:active {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .drive {
+        min-height: calc(82.5vh - 45px);
+        order: unset;
+    }
 }
