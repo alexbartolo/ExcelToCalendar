@@ -9,19 +9,19 @@
 }
 
 html {
-    background-color: rgba(25, 25, 25, 1);
-    height: 100%;
     box-sizing: border-box;
+    background-color: rgba(25, 25, 25, 1);
     color: white;
-    padding: 15px;
 }
 
 .app {
+    margin: 15px;
     display: grid;
-    grid-template-rows: auto auto 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* grid-template-rows: 1fr 1fr 3fr; */
     gap: 15px;
+    /* height: calc(100vh - 30px); */
     /* width: 100vw; */
-    height: calc(100vh - 30px);
 }
 
 .header {
@@ -120,26 +120,38 @@ html {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    /* min-height: calc(var(--height) - 120px); */
     order: 2;
+    height: calc(var(--height) - 12em - 158px);
 }
 
 .drive--files {
     background-color: rgba(0, 0, 0, 0.7);
-    border: 1px white solid;
+    /* border: 1px white solid; */
     border-radius: 15px;
-    padding: 5px;
+    padding: 5px 5px 0px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
+    /* height: 600px; */
+    overflow: auto;
 }
 
 table {
+    /* position: sticky; */
+    /* top: 0; */
     border-collapse: collapse;
     border-style: hidden;
-    width: 100%;
+    /* width: 100%; */
     text-align: left;
 }
 
 th,
 td {
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    /* border-top: 1px solid white; */
+    /* border-right: 1px solid white; */
     font-size: 12px;
     padding: 8px;
 }
@@ -148,18 +160,127 @@ th {
     font-size: 18px;
 }
 
+thead {
+    position: sticky;
+    top: 0;
+    color: black;
+    background-color: white;
+}
+
+thead::before {
+    overflow: hidden;
+    content: "";
+    position: absolute;
+    top: -5px;
+    bottom: -1px;
+    left: -5px;
+    right: -5px;
+    z-index: -1;
+    background-color: white;
+}
+
+/* tfoot {
+    position: sticky;
+    bottom: 0;
+    color: black;
+    background-color: white;
+    transform-style: preserve-3d;
+    /* border: 1px solid black; 
+    padding: unset; 
+} */
+
+/* tfoot::before {
+    overflow: hidden;
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: 0px;
+    left: -5px;
+    right: -5px;
+    transform: translateZ(-1px);
+    background-color: white
+} */
+
+.drive--table--footer {
+    margin-top: auto;
+    display: flex;
+    position: sticky;
+    bottom: 0px;
+    padding: 5px;
+    transform-style: preserve-3d;
+    gap: 10px;
+}
+
+.drive--table--footer::before {
+    overflow: hidden;
+    content: "";
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: -5px;
+    right: -5px;
+    transform: translateZ(-1px);
+    background-color: rgb(255, 255, 255);
+}
+
 .drive--button {
     /* padding-top: ; */
     align-self: flex-end;
 }
 
-@media only screen and (max-width: 500px) {
+tfoot td {
+    padding: 0px;
+    border: 0px;
+    height: 4.5vh;
+}
+
+.drive tbody tr:hover {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.drive tbody tr.selected {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+tbody tr:hover td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+tbody tr:hover td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.table--button {
+    padding: 5px;
+    /* margin: 3px 0; */
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 15px;
+    border: 0px;
+    transition: background 0.4s;
+}
+
+.table--button:hover {
+    background-color: rgb(153, 153, 153);
+}
+
+.table--button:active {
+    background-color: rgb(77, 77, 77);
+    /* background-size: 100%; 
+    transition: background 0s;*/
+}
+
+@media only screen and (max-width: 900px) {
     .app {
         display: flex;
         flex-direction: column;
         column-gap: 15px;
         z-index: 1;
-        /* height: 100vh; */
+        max-height: fit-content;
     }
 
     .header {
@@ -167,7 +288,8 @@ th {
         position: sticky;
         top: 15px;
         transform-style: preserve-3d;
-        height: 7.5%;
+        height: 7.5vh;
+        z-index: 1;
     }
 
     .header--text {
@@ -186,7 +308,7 @@ th {
         right: -5px;
         /* z-index: -1; */
         transform: translateZ(-1px);
-        background-color: rgba(25,25,25,1);
+        background-color: rgba(25, 25, 25, 1);
     }
 
     .account--button:hover {
@@ -198,7 +320,15 @@ th {
     }
 
     .drive {
-        min-height: calc(82.5vh - 45px);
+        /* flex: ; */
+        min-height: calc(var(--height) - 7.5vh - 113px);
+
+        height: calc(var(--height) - 7.5vh - 113px);
+        /* max-height: calc(var(--height) - 7.5vh - 113px); */
+        /* height: var(--height); */
+        /* height: calc(100vh); */
         order: unset;
+        /* z-index: -1; */
+        /* border: 1px white solid; */
     }
 }

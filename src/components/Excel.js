@@ -17,33 +17,32 @@ export default function Excel () {
             <span className="drive--title">Excel</span>
             <div className="drive--files">
                 <table>
+                    <thead>
                     <tr>
                         <th width="50%">Name</th>
-                        {/* <th>Owner</th> */}
                         <th width="30%">Created</th>
                         <th width="20%">Size</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>Spreadsheet</td>
-                        {/* <td>me</td> */}
                         <td>4 Feb 2022</td>
                         <td>42kb</td>
                     </tr><tr>
                         <td>Spreadsheet</td>
-                        {/* <td>me</td> */}
                         <td>4 Feb 2022</td>
                         <td>42kb</td>
                     </tr><tr>
                         <td>Spreadsheet</td>
-                        {/* <td>me</td> */}
                         <td>4 Feb 2022</td>
                         <td>42kb</td>
                     </tr><tr>
                         <td>Spreadsheet</td>
-                        {/* <td>me</td> */}
                         <td>4 Feb 2022</td>
                         <td>42kb</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
             <button className="drive--button" type="button" onClick={select}>Select</button>

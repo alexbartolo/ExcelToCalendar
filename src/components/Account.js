@@ -1,13 +1,17 @@
 import React from "react"
-
+import { scroller } from "react-scroll"
 export default function Account () {
 
     // function login () {
     //     console.log("login")
     // }
 
+    
     function change () {
-        console.log("change")
+        scroller.scrollTo("test", {
+            smooth: true,
+            offset: - document.getElementsByClassName("header")[0].offsetHeight - 30
+        })
     }
 
     return (
