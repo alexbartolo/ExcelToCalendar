@@ -142,7 +142,8 @@ table {
     /* position: sticky; */
     /* top: 0; */
     border-collapse: collapse;
-    border-style: hidden;
+    /* border-spacing: 0 1em; */
+    /* border-style: hidden; */
     /* width: 100%; */
     text-align: left;
 }
@@ -154,6 +155,7 @@ td {
     /* border-right: 1px solid white; */
     font-size: 12px;
     padding: 8px;
+    cursor: pointer;
 }
 
 th {
@@ -223,20 +225,35 @@ thead::before {
     background-color: rgb(255, 255, 255);
 }
 
-.drive--button {
-    /* padding-top: ; */
+.drive--bottom {
+    display: flex;
+    gap: 15px;
+    align-items: center;
     align-self: flex-end;
+    justify-content: center;
 }
 
-tfoot td {
+.fix-height {
+    height: 100%;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* .drive--button {
+    /* padding-top: ; */
+    /* align-self: flex-end;
+} */
+
+/* tfoot td {
     padding: 0px;
     border: 0px;
     height: 4.5vh;
-}
+} */
 
 .drive tbody tr:hover {
     font-weight: 600;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .drive tbody tr.selected {
@@ -251,6 +268,20 @@ tbody tr:hover td:first-child {
 tbody tr:hover td:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+tbody:before {
+    content:"-";
+    display:block;
+    line-height:5px;
+    color: transparent;
+}
+
+tbody:after {
+    content:"-";
+    display:block;
+    line-height:5px;
+    color: transparent;
 }
 
 .table--button {
@@ -330,5 +361,15 @@ tbody tr:hover td:last-child {
         order: unset;
         /* z-index: -1; */
         /* border: 1px white solid; */
+    }
+
+    .drive tbody tr:hover {
+        font-weight: 400;
+        background-color: transparent;
+    }
+
+    .drive tbody tr.selected {
+        font-weight: 600;
+        background-color: rgba(255, 255, 255, 0.4);
     }
 }

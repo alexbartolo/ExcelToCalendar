@@ -8,7 +8,7 @@ export default function Account () {
 
     
     function change () {
-        scroller.scrollTo("test", {
+        scroller.scrollTo("drive", {
             smooth: true,
             offset: - document.getElementsByClassName("header")[0].offsetHeight - 30
         })

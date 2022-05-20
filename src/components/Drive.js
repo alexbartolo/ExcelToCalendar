@@ -1,10 +1,27 @@
 import React from "react";
-// import toast, { Toaster } from 'react-hot-toast'
 import toast from "react-hot-toast";
 
-import test from '../testData/testData'
+import driveData from "../testData/testData";
 
 export default function Drive() {
+    const [fileName, setFileName] = React.useState("");
+
+    const [tableData, setTableData] = React.useState({
+        selected: undefined,
+        data: driveData.map((dataElement) => ({
+            ...dataElement,
+            isSelected: false,
+        })),
+    });
+
+    React.useEffect(() => {
+        if (tableData.selected || tableData.selected === 0) {
+            setFileName(tableData.data[tableData.selected].name);
+        } else {
+            setFileName("");
+        }
+    }, [tableData]);
+
     const select = () =>
         toast("select", {
             style: {
@@ -14,7 +31,7 @@ export default function Drive() {
             },
         });
 
-    const handleClick = (event) => 
+    const handleClick = (event) =>
         toast(event.target.value, {
             style: {
                 borderRadius: "15px",
@@ -23,20 +40,55 @@ export default function Drive() {
             },
         });
 
-    const testFunction = (event) => {
-        event.target.parentElement.addClass("selected")
-    }
+    const testFunction = (id) => {
+        setTableData((previousValues) => {
+            if (!previousValues.selected && previousValues.selected !== 0) {
+                return {
+                    selected: id,
+                    data: previousValues.data.map((record) => {
+                        if (record.id === id)
+                            return { ...record, isSelected: true };
+                        else return record;
+                    }),
+                };
+            } else if (previousValues.selected === id) {
+                return {
+                    selected: undefined,
+                    data: previousValues.data.map((record) => {
+                        if (record.id === id)
+                            return { ...record, isSelected: false };
+                        else return record;
+                    }),
+                };
+            } else {
+                return {
+                    selected: id,
+                    data: previousValues.data.map((record) => {
+                        if (record.id === id)
+                            return { ...record, isSelected: true };
+                        else if (record.id === previousValues.selected)
+                            return { ...record, isSelected: false };
+                        else return record;
+                    }),
+                };
+            }
+        });
+    };
 
-    const testData = test.map((t, index) => (
-        <tr onClick={testFunction} key={index}>
-            <td>{t.name}</td>
-            <td>{t.date}</td>
-            <td>{t.size}</td>
+    const testData = tableData.data.map((dataElement, index) => (
+        <tr
+            onClick={() => testFunction(dataElement.id)}
+            key={index}
+            className={dataElement.isSelected ? "selected" : ""}
+        >
+            <td>{dataElement.name}</td>
+            <td>{dataElement.date}</td>
+            <td>{dataElement.size}</td>
         </tr>
-    ))
+    ));
 
     return (
-        <div name="test" className="drive">
+        <div name="drive" className="drive">
             <span className="drive--title">Drive</span>
             <div className="drive--files">
                 <table>
@@ -47,120 +99,38 @@ export default function Drive() {
                             <th width="20%">Size</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {testData}
-                        {/* <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr> 
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr>
-                        <tr>
-                            <td>Spreadsheet</td>
-                            <td>4 Feb 2022</td>
-                            <td>42kb</td>
-                        </tr> */}
-                    </tbody>
+                    <tbody>{testData}</tbody>
                 </table>
                 <footer className="drive--table--footer">
-                    {/* <tr align="center"> */}
-                        {/* <td> */}
-                            <input type="button" className="table--button" value="Personal" onClick={handleClick}/>
-                        {/* </td> */}
-                        {/* <td colSpan={2}> */}
-                            <input type="button" className="table--button" value="Shared with me" onClick={handleClick}/>
-                        {/* </td> */}
-                    {/* </tr> */}
+                    <input
+                        type="button"
+                        className="table--button"
+                        value="Personal"
+                        onClick={handleClick}
+                    />
+                    <input
+                        type="button"
+                        className="table--button"
+                        value="Shared with me"
+                        onClick={handleClick}
+                    />
                 </footer>
             </div>
-            <button className="drive--button" type="button" onClick={select}>
-                Select
-            </button>
-            {/* <Toaster position="bottom-center" reverseOrder={false}/> */}
+            <div className="drive--bottom">
+                {fileName !== "" && (
+                    <span className="account--email fix-height">
+                        {fileName}
+                    </span>
+                )}
+                <button
+                    className="drive--button"
+                    type="button"
+                    disabled={fileName === ""}
+                    onClick={select}
+                >
+                    Select
+                </button>
+            </div>
         </div>
     );
 }
